@@ -90,7 +90,7 @@ const Projects = () => {
       </div>
 
       {/* Project Detail Modal */}
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
+      <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
         <DialogContent className="max-w-3xl bg-card border-border">
           <DialogHeader>
             <DialogTitle className="font-heading text-2xl text-foreground">
