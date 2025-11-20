@@ -4,6 +4,27 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { toast } from 'sonner';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string()
+    .trim()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters'),
+  email: z.string()
+    .trim()
+    .email('Invalid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  subject: z.string()
+    .trim()
+    .min(1, 'Subject is required')
+    .max(200, 'Subject must be less than 200 characters'),
+  message: z.string()
+    .trim()
+    .min(10, 'Message must be at least 10 characters')
+    .max(2000, 'Message must be less than 2000 characters'),
+  honeypot: z.string().max(0, 'Invalid submission'),
+});
 
 const socialLinks = [
   {
@@ -34,31 +55,62 @@ const Contact = () => {
     email: '',
     subject: '',
     message: '',
+    honeypot: '',
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    // Validate form data
+    const validation = contactSchema.safeParse(formData);
+    
+    if (!validation.success) {
+      const fieldErrors: Record<string, string> = {};
+      validation.error.errors.forEach((error) => {
+        if (error.path[0]) {
+          fieldErrors[error.path[0] as string] = error.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast.error('Please fix the errors in the form');
+      return;
+    }
+    
+    // Check honeypot (spam prevention)
+    if (formData.honeypot) {
+      toast.error('Invalid submission detected');
+      return;
+    }
+    
+    setIsSubmitting(true);
     
     // Formspree endpoint - user will need to set this up
     const formspreeEndpoint = 'https://formspree.io/f/YOUR_FORM_ID';
     
     try {
+      const { honeypot, ...submitData } = validation.data;
       const response = await fetch(formspreeEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submitData),
       });
       
       if (response.ok) {
         toast.success('Message sent successfully!');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
       } else {
         toast.error('Failed to send message. Please try emailing directly.');
       }
     } catch (error) {
       toast.error('Failed to send message. Please try emailing directly.');
+    } finally {
+      // Rate limiting: disable submit for 5 seconds
+      setTimeout(() => setIsSubmitting(false), 5000);
     }
   };
 
@@ -96,7 +148,11 @@ const Contact = () => {
                   onChange={handleChange}
                   className="bg-background border-border rounded-xl"
                   placeholder="Your name"
+                  maxLength={100}
                 />
+                {errors.name && (
+                  <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                )}
               </div>
 
               <div>
@@ -112,7 +168,11 @@ const Contact = () => {
                   onChange={handleChange}
                   className="bg-background border-border rounded-xl"
                   placeholder="your.email@example.com"
+                  maxLength={255}
                 />
+                {errors.email && (
+                  <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                )}
               </div>
 
               <div>
@@ -128,7 +188,11 @@ const Contact = () => {
                   onChange={handleChange}
                   className="bg-background border-border rounded-xl"
                   placeholder="What's this about?"
+                  maxLength={200}
                 />
+                {errors.subject && (
+                  <p className="text-sm text-red-500 mt-1">{errors.subject}</p>
+                )}
               </div>
 
               <div>
@@ -143,14 +207,30 @@ const Contact = () => {
                   onChange={handleChange}
                   className="bg-background border-border rounded-xl min-h-32"
                   placeholder="Your message..."
+                  maxLength={2000}
                 />
+                {errors.message && (
+                  <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                )}
               </div>
+
+              {/* Honeypot field for spam prevention - hidden from users */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={handleChange}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
 
               <Button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-6 rounded-xl hover-glow"
+                disabled={isSubmitting}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-6 rounded-xl hover-glow disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
           </div>
