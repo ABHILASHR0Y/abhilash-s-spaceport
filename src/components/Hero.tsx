@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Download } from 'lucide-react';
+import profilePhoto from '@/assets/profile-photo.jpg';
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
@@ -81,15 +82,11 @@ const Hero = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse" />
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-primary glow-yellow bg-card">
-                {/* Placeholder for profile photo */}
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-card to-muted">
-                  <div className="text-center p-6">
-                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                      <span className="text-4xl font-heading font-bold text-primary">AR</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">Upload profile photo</p>
-                  </div>
-                </div>
+                <img 
+                  src={profilePhoto} 
+                  alt="Abhilash Roy - Tech Enthusiast and MCA Student" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
