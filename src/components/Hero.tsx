@@ -69,8 +69,8 @@ const Hero = () => {
                 asChild
                 className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-semibold px-8 py-6 text-lg rounded-2xl transition-all"
               >
-                <a href="/resume.pdf" download>
-                  Download Resume
+                <a href="/resume">
+                  View Resume
                   <Download className="ml-2 h-5 w-5" />
                 </a>
               </Button>
