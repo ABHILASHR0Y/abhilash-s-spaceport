@@ -46,13 +46,13 @@ const Resume = () => {
             </p>
             
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <a href="mailto:your.email@example.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="mailto:abhilashr661@gmail.com" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Mail className="w-4 h-4" />
-                your.email@example.com
+                abhilashr661@gmail.com
               </a>
-              <a href="tel:+91XXXXXXXXXX" className="flex items-center gap-2 hover:text-primary transition-colors">
+              <a href="tel:+919633461686" className="flex items-center gap-2 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4" />
-                +91 XXXXXXXXXX
+                +91 9633461686
               </a>
               <span className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
@@ -92,12 +92,16 @@ const Resume = () => {
             <h2 className="font-heading text-2xl font-bold text-primary mb-4">Technical Skills</h2>
             <div className="space-y-3">
               <div>
-                <h3 className="text-sm font-semibold text-foreground mb-2">Frontend Development</h3>
-                <p className="text-sm text-muted-foreground">HTML, CSS, JavaScript</p>
+                <h3 className="text-sm font-semibold text-foreground mb-2">Programming Languages</h3>
+                <p className="text-sm text-muted-foreground">JavaScript, Python</p>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-foreground mb-2">Backend Development</h3>
-                <p className="text-sm text-muted-foreground">Python, Django</p>
+                <h3 className="text-sm font-semibold text-foreground mb-2">Web Technologies</h3>
+                <p className="text-sm text-muted-foreground">HTML, CSS, React, TypeScript, Tailwind CSS</p>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-foreground mb-2">Backend & Frameworks</h3>
+                <p className="text-sm text-muted-foreground">Django, Node.js</p>
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-2">Databases</h3>
