@@ -181,37 +181,31 @@ const Resume = () => {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-2">Leafy Life Monitor</h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  IoT-based plant monitoring system using ESP32 microcontroller with soil moisture sensors, 
-                  temperature monitoring, and real-time alert notifications for plant care.
+                  Smart plant-care system that automates watering and nutrient dispensing using ESP microcontroller 
+                  and soil moisture sensors. Monitors moisture levels and triggers watering/nutrient delivery when 
+                  thresholds are reached, with manual control, event logging with timestamps, and a web interface for insights.
                 </p>
-                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> ESP32, Arduino, IoT, Sensors</p>
+                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> ESP8266/ESP32, Arduino IDE, HTML/CSS/JavaScript, JSON logging, Git</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">FitZone Landing Page</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-2">ShareSpot</h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Modern, responsive fitness website with clean UI/UX design, interactive elements, 
-                  and optimized performance for mobile and desktop platforms.
+                  Community resource-sharing platform enabling local lending, borrowing, buying, and selling. 
+                  Features categorized listings, secure transactions, and dedicated lending workflow to reduce 
+                  waste and increase resource accessibility within communities.
                 </p>
-                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> HTML, CSS, JavaScript</p>
+                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> PHP, MySQL, HTML, CSS, XAMPP</p>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Bookstore Management System</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-2">SSV Discovery</h3>
                 <p className="text-sm text-muted-foreground mb-2">
-                  Full-stack web application for managing book inventory, sales tracking, and customer 
-                  management with database integration and admin dashboard.
+                  AI-enhanced campus recruitment portal for SSV College with structured student profiles, 
+                  skill filters, and Natural Language Search powered by spaCy NLP. Hosted on Linux server, 
+                  streamlining recruiter workflows and reducing manual resume screening.
                 </p>
-                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> Python, Django, MySQL</p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">Personal Portfolio Website</h3>
-                <p className="text-sm text-muted-foreground mb-2">
-                  Dark-themed space aesthetic portfolio with interactive particle animations, 
-                  smooth transitions, and responsive design showcasing projects and skills.
-                </p>
-                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> React, TypeScript, Tailwind CSS</p>
+                <p className="text-xs text-muted-foreground"><span className="font-semibold">Tech:</span> Django, Python, spaCy, MySQL, Bootstrap, Git</p>
               </div>
             </div>
           </section>

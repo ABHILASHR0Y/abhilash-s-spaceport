@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
+import leafyMonitorImg from '@/assets/project-leafy-monitor.jpg';
+import ssvDiscoveryImg from '@/assets/project-ssv-discovery.jpg';
+import sharespotImg from '@/assets/project-sharespot.jpg';
 
 const projects = [
   {
@@ -11,7 +14,7 @@ const projects = [
     tech: ['ESP8266/ESP32', 'Arduino IDE', 'HTML/CSS/JavaScript', 'JSON logging', 'Git'],
     github: 'Will add later',
     live: null,
-    image: null,
+    image: leafyMonitorImg,
   },
   {
     title: 'ShareSpot',
@@ -20,7 +23,7 @@ const projects = [
     tech: ['PHP', 'MySQL', 'HTML', 'CSS', 'XAMPP'],
     github: 'Will add later',
     live: null,
-    image: null,
+    image: sharespotImg,
   },
   {
     title: 'SSV Discovery',
@@ -29,7 +32,7 @@ const projects = [
     tech: ['Django', 'Python', 'spaCy', 'MySQL', 'Bootstrap', 'Git'],
     github: 'Will add later',
     live: null,
-    image: null,
+    image: ssvDiscoveryImg,
   },
 ];
 
@@ -53,12 +56,13 @@ const Projects = () => {
               onClick={() => setSelectedProject(project)}
               className="bg-card border border-border rounded-2xl overflow-hidden hover-glow cursor-pointer transition-all"
             >
-              {/* Project image placeholder */}
-              <div className="w-full h-48 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 flex items-center justify-center">
-                <div className="text-center p-6">
-                  <p className="text-sm text-muted-foreground mb-2">Project Image</p>
-                  <p className="text-xs text-muted-foreground/60">Upload manually</p>
-                </div>
+              {/* Project image */}
+              <div className="w-full h-48 overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               <div className="p-6">
@@ -102,12 +106,13 @@ const Projects = () => {
           </DialogHeader>
           
           <div className="space-y-6">
-            {/* Image placeholder */}
-            <div className="w-full h-64 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-xl flex items-center justify-center">
-              <div className="text-center p-6">
-                <p className="text-muted-foreground">Project Image Placeholder</p>
-                <p className="text-sm text-muted-foreground/60 mt-2">Upload manually</p>
-              </div>
+            {/* Project image */}
+            <div className="w-full h-64 rounded-xl overflow-hidden">
+              <img 
+                src={selectedProject?.image} 
+                alt={selectedProject?.title}
+                className="w-full h-full object-cover"
+              />
             </div>
             
             <div>
